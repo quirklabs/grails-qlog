@@ -12,6 +12,9 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     repositories {
+        inherits true // Whether to inherit repository definitions from plugins
+        grailsPlugins()
+        grailsHome()        
         grailsCentral()
         mavenRepo name: "quirk-ext-snapshot", root: "http://artifactory.quirk.biz/artifactory/ext-snapshot-local/"
     }
@@ -24,6 +27,7 @@ grails.project.dependency.resolution = {
               ":release:1.0.0") {
             export = false
         }
+        build ":release:2.0.3"
     }
 }
 

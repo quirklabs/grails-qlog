@@ -1,5 +1,11 @@
+import org.apache.log4j.Logger
+import org.apache.log4j.PatternLayout
+import org.apache.log4j.Appender
+import org.apache.log4j.Level
+import grails.util.Environment
+
 class QlogGrailsPlugin {
-    def version = "0.1"
+    def version = "1.0"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
     def pluginExcludes = [
@@ -29,7 +35,6 @@ Add default production logging setup with Graylog2.
                 graylogHost: application.config.graylog2.server ?: defaultGraylogHost,
                 extractStacktrace: true,
                 addExtendedInformation: true,
-                includeLocationInformation: true,
                 additionalFields: "{'runtime': 'grails', 'environment': '${Environment.current.name}', 'transport': 'gelf-java'}",
                 facility: facility,
                 threshold: application.config.graylog2.threshold ?: org.apache.log4j.Level.INFO,
