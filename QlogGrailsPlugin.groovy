@@ -5,7 +5,7 @@ import org.apache.log4j.Level
 import grails.util.Environment
 
 class QlogGrailsPlugin {
-    def version = "1.1.1"
+    def version = "1.2"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
     def pluginExcludes = [
@@ -40,8 +40,8 @@ Add default production logging setup with Graylog2.
                 threshold: application.config.graylog2.threshold ?: org.apache.log4j.Level.INFO,
                 layout: layout
         )
-        appender.activateOptions()
 
+        appender.activateOptions()
         rL.addAppender(appender)
     }
 }

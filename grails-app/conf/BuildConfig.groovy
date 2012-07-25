@@ -20,6 +20,7 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         compile 'org.graylog2:gelfj:0.9.1-SNAPSHOT'
+        runtime 'com.googlecode.json-simple:json-simple:1.1.1'
     }
 
     plugins {
