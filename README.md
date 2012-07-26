@@ -3,19 +3,6 @@ Qlog Plugin
 
 Add default production logging setup with Graylog2, including the request URL on each applicable log record.
 
-Installation
-------------
-
-In BuildConfig.groovy, add to the plugins block:
-
-```groovy
-plugins {
-	....
-	
-    compile ":qlog:1.0"
-}
-```
-
 Configuration
 -------------
 
