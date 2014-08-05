@@ -5,7 +5,7 @@ import org.apache.log4j.Level
 import grails.util.Environment
 
 class QlogGrailsPlugin {
-    def version = "1.2"
+    def version = "1.3"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
     def pluginExcludes = [
@@ -16,7 +16,7 @@ class QlogGrailsPlugin {
     def author = "Craig Raw"
     def authorEmail = "craig@quirk.biz"
     def description = '''\
-Add default production logging setup with Graylog2.
+Add default staging and production logging setup with Gelf protocol.
 '''
     def documentation = "https://github.com/quirklabs/grails-qlog/blob/master/README.md"
     def license = "APACHE"
@@ -27,7 +27,14 @@ Add default production logging setup with Graylog2.
     def doWithSpring = {
         def rL = Logger.rootLogger
         def layout = new PatternLayout(conversionPattern: application.config.graylog2.conversionPattern ?: '%d %-5p [%c] (%t) %X{requestURL} %m%n')
-        def defaultGraylogHost = Environment.current == Environment.PRODUCTION ? "graylog2.quirk.biz" : "localhost"
+        def defaultGraylogHost = "localhost"
+        if(Environment.current.name == 'staging') {
+          defaultGraylogHost = "logging.quirkstaging.com"
+        }
+        if(Environment.current.name == 'production') {
+          defaultGraylogHost = "logging.quirkagency.com"
+        }
+        
         def facility = (grails.util.Metadata.current.'app.name').toString()
 
         Appender appender = new org.graylog2.log.GelfAppender(

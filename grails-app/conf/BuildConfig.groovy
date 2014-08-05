@@ -16,7 +16,7 @@ grails.project.dependency.resolution = {
         grailsPlugins()
         grailsHome()        
         grailsCentral()
-        mavenRepo name: "quirk-ext-snapshot", root: "http://artifactory.quirk.biz/artifactory/ext-snapshot-local/"
+        mavenRepo "http://artifactory.quirk.biz/artifactory/ext-snapshot-local/"
     }
     dependencies {
         compile 'org.graylog2:gelfj:0.9.1-SNAPSHOT'
@@ -24,8 +24,7 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        build(":tomcat:$grailsVersion",
-              ":release:2.0.3") {
+        build(":release:3.0.1") {
             export = false
         }
     }
