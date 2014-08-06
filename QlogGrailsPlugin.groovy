@@ -36,6 +36,9 @@ Add default staging and production logging setup with Gelf protocol.
         }
         
         def facility = (grails.util.Metadata.current.'app.name').toString()
+        if(application.config.graylog2.facility) {
+          facility = application.config.graylog2.facility
+        }
 
         Appender appender = new org.graylog2.log.GelfAppender(
                 name:"gelf",
